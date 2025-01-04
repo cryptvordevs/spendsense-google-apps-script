@@ -1,0 +1,90 @@
+<style>
+  body {
+    background-color: #343434;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 900px;
+    padding: 20px;
+    background-color: rgba(85, 85, 85, 0.85);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .dropdown-row, .input-row, .note-row, .submit-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  input, select, textarea {
+    width: calc(33% - 10px);
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    color: #343434;
+    font-size: 14px;
+  }
+  textarea {
+    height: 120px;
+    resize: none;
+  }
+  button {
+    background-color: #228B22;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  button:hover {
+    background-color: #ff4500;
+    transform: scale(1.05);
+  }
+  .recent-expenses {
+    width: 100%;
+  }
+  .recent-transactions {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .recent-transactions th, .recent-transactions td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #555555;
+    background-color: rgba(52, 52, 52, 0.9);
+  }
+  .recent-transactions th {
+    background-color: #444444;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  .recent-transactions tr:nth-child(even) {
+    background-color: rgba(85, 85, 85, 0.8);
+  }
+  .recent-transactions tr:hover {
+    background-color: #555555;
+  }
+  h3 {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-top: 30px;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

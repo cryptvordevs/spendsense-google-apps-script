@@ -1,0 +1,76 @@
+<script>
+  $(document).ready(function () {
+    google.script.run.withSuccessHandler(populateDropdowns).getDropdownValues();
+
+    function populateDropdowns(data) {
+      const { categories, descriptions, paymentMethods } = data;
+
+      categories.forEach(category => {
+        $('#category').append(new Option(category, category));
+      });
+
+      paymentMethods.forEach(method => {
+        $('#payment_method').append(new Option(method, method));
+      });
+
+      $('#category').on('change', function () {
+        const selectedCategory = $(this).val();
+        const descriptionOptions = descriptions[selectedCategory] || [];
+        $('#description').empty().append(new Option('Select Description', '', true, true));
+        descriptionOptions.forEach(description => {
+          $('#description').append(new Option(description, description));
+        });
+      });
+    }
+
+    $('#submit-expense').on('click', function () {
+      const expenseData = {
+        category: $('#category').val(),
+        description: $('#description').val(),
+        amount: $('#amount').val(),
+        paymentMethod: $('#payment_method').val(),
+        notes: $('#notes').val(),
+      };
+
+      if (!expenseData.category || !expenseData.description || !expenseData.amount || !expenseData.paymentMethod) {
+        alert('Please fill out all required fields.');
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(function () {
+          // No alert here; simply clear the form and refresh the transactions table
+          clearForm();
+          google.script.run.withSuccessHandler(populateRecentTransactions).getRecentTransactions();
+        })
+        .logExpense(Object.values(expenseData));
+    });
+
+    google.script.run.withSuccessHandler(populateRecentTransactions).getRecentTransactions();
+
+    function populateRecentTransactions(transactions) {
+      const tableBody = $('#recent-transactions-body');
+      tableBody.empty();
+
+      transactions.forEach(row => {
+        const tableRow = $('<tr></tr>');
+        row.forEach((cell, index) => {
+          if (index === 3) {
+            tableRow.append(`<td>$${parseFloat(cell).toFixed(2)}</td>`);
+          } else {
+            tableRow.append(`<td>${cell}</td>`);
+          }
+        });
+        tableBody.append(tableRow);
+      });
+    }
+
+    function clearForm() {
+      $('#category').val('');
+      $('#description').val('');
+      $('#amount').val('');
+      $('#payment_method').val('');
+      $('#notes').val('');
+    }
+  });
+</script>

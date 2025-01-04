@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <?!= include('css_scripttag'); ?>
+</head>
+<body>
+  <div class="form-container">
+    <?!= include('image'); ?>
+    <div class="dropdown-row">
+      <select id="category">
+        <option value="" disabled selected>Select Category</option>
+      </select>
+      <select id="description">
+        <option value="" disabled selected>Select Description</option>
+      </select>
+      <select id="payment_method">
+        <option value="" disabled selected>Select Payment Method</option>
+      </select>
+    </div>
+    <div class="input-row">
+      <input type="text" id="amount" placeholder="Enter Amount">
+      <input type="text" id="notes" placeholder="Enter Notes">
+      <button id="submit-expense">Submit</button>
+    </div>
+    <h3>Recent Expenses</h3>
+    <div class="recent-expenses">
+      <table class="recent-transactions">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Payment Method</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="recent-transactions-body"></tbody>
+      </table>
+    </div>
+  </div>
+  <?!= include('jquery'); ?>
+</body>
+</html>
